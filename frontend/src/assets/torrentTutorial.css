@@ -1,0 +1,39 @@
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-title {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.autocomplete-list {
+
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 0 0 6px 6px;
+  max-height: 550px;
+  overflow-y: auto;
+  z-index: 2000; /* higher than everything else */
+  list-style-type: none; /* removes bullets */
+  margin: 0;             /* remove default margin */
+  padding: 0;            /* remove default padding */
+}
+
+.autocomplete-list li {
+  list-style: none;      /* just to be safe on li */
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.autocomplete-list li:last-child {
+  border-bottom: none;
+}

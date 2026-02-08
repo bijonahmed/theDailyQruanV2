@@ -1,0 +1,11 @@
+User-Agent: *
+Disallow:
+Sitemap: https://w3programmer.net/register
+Sitemap: https://w3programmer.net/signup
+Sitemap: https://w3programmer.net/login
+Sitemap: https://w3programmer.net/users/my-bookmarks
+Sitemap: https://w3programmer.net/users/referral
+Sitemap: https://w3programmer.net/users/my-certificate
+Sitemap: https://w3programmer.net/users/change-password
+Sitemap: https://w3programmer.net/users/profile
+Sitemap: https://w3programmer.net/sendbox/php/index.php

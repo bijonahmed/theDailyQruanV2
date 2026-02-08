@@ -1,0 +1,203 @@
+/* ===================== JUZ Header ===================== */
+.juz-header-section {
+  position: relative;
+  background: linear-gradient(135deg, #f9f7f1, #fff);
+  padding: 50px 20px 80px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.juz-header-content {
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.juz-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+  font-family: "Amiri", serif;
+}
+
+.juz-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.juz-banner-img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.juz-banner-img:hover {
+  transform: scale(1.03);
+}
+
+/* Decorative shapes behind header */
+.juz-header-section::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 193, 7, 0.1);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.juz-header-section::after {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 250px;
+  height: 250px;
+  background: rgba(40, 167, 69, 0.1);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* ===================== Ayah Cards ===================== */
+.ayah {
+  background: #fff;
+  border-radius: 15px;
+  padding: 1.2rem 1.5rem 1.2rem 4rem; /* extra space for play button */
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.ayah:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.ayah.active {
+  background: #fff8e1;
+  border: 1px solid #ffc107;
+  box-shadow: 0 10px 25px rgba(255, 193, 7, 0.3);
+}
+
+/* Ayah content */
+.ayah-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.arabic {
+  font-family: "Amiri", serif;
+  font-size: 1.6rem;
+  text-align: right;
+  direction: rtl;
+  color: #1a1a1a;
+  line-height: 1.8;
+}
+
+.translation {
+  margin-top: 0.5rem;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Play Button on left */
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #28a745, #71e197);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+  transform: translateY(-50%) scale(1.05);
+  opacity: 0.9;
+}
+
+/* ===================== Audio Controls ===================== */
+.audio-controls-modern {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.audio-controls-modern .btn {
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  min-width: 140px;
+  padding: 0.6rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.audio-controls-modern .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.audio-controls-modern .btn-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #66b2ff 100%);
+  border: none;
+}
+
+.audio-controls-modern .btn-outline-secondary {
+  border: 2px solid #6c757d;
+  color: #6c757d;
+}
+
+.audio-controls-modern .btn-outline-secondary:hover {
+  background-color: #6c757d;
+  color: #fff;
+  border-color: #6c757d;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 768px) {
+  .juz-title {
+    font-size: 2.2rem;
+  }
+  .juz-subtitle {
+    font-size: 1rem;
+  }
+  .arabic {
+    font-size: 1.4rem;
+  }
+  .translation {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .juz-header-section {
+    padding: 30px 15px 60px;
+  }
+  .ayah {
+    padding-left: 3rem;
+  }
+  .play-btn {
+    left: 0.8rem;
+  }
+  .audio-controls-modern .btn {
+    min-width: 120px;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.2rem;
+  }
+}

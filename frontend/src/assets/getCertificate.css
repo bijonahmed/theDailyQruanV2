@@ -1,0 +1,48 @@
+.display-4 {
+color: #343a40;
+font-size: 2.5rem;
+margin-bottom: 20px;
+font-weight: 700;
+text-align: center;
+text-transform: uppercase;
+}
+.lead {
+color: #495057;
+font-size: 1.2rem;
+margin-bottom: 20px;
+text-align: justify;
+}
+h2 {
+color: #4e4e4e;
+font-size: 2rem;
+margin-top: 30px;
+border-bottom: 2px solid #dfff000a;
+padding-bottom: 10px;
+}
+h3 {
+color: #17a2b8;
+font-size: 1.75rem;
+margin-top: 20px;
+position: relative;
+padding-left: 20px;
+}
+
+p, ul {
+color: rgb(49, 49, 49);
+font-size: 1rem;
+line-height: 1.8;
+text-align: justify;
+}
+ul {
+margin-left: 20px;
+list-style-type: disc;
+}
+ul li {
+margin-bottom: 10px;
+}
+	
+
+.banner_section.banner_style_4 .decoration_wrap {
+  min-height: 300px;
+  background-size: 80%;
+}

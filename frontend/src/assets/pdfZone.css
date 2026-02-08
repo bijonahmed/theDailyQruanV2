@@ -1,0 +1,215 @@
+/* Card Container Styling */
+.card-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    display: flex;
+    align-items: center; /* Vertically center align items */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+  
+  .card-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Image Section Styling */
+  .image-section {
+    flex-shrink: 0;
+    width: 50px; /* Fixed image size */
+    height: 50px; /* Fixed image size */
+    margin-right: 15px; /* Space between the image and content */
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added image shadow */
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Add shadow effect on hover */
+  .card-image:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+  }
+  
+  /* Content Section Styling */
+  .content-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Title Styling (File name) */
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Limit to two lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .card-link {
+    color: #333333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .card-link:hover {
+    color: #007bff;
+  }
+  
+  /* Container styling */
+.autocomplete-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Input styling */
+.search-input {
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 20px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Suggestion list styling */
+.suggestion-list {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 0;
+  max-height: 300px; /* Optional: limit the height for scrolling */
+  overflow-y: auto;
+  display: none; /* Hide by default */
+}
+
+/* Show suggestion list only if populated */
+.suggestion-list.active {
+  display: block;
+}
+
+/* Suggestion item styling */
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestion-item:hover {
+  background: #f0f0f0;
+}
+
+/* Loader styling */
+.loader {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 12px;
+  color: #888;
+}
+
+
+/* Suggestion list container */
+ 
+
+
+.card-title {
+  font-size: 0.8rem;
+  color: #333;
+}
+
+.card-link {
+  color: #000000;
+  text-decoration: none;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+  text-decoration: none;
+}
+/* Custom Card Layout */
+.custom-card {
+  display: block; /* Ensure the card layout is block level */
+  padding: 10px;
+  height: 60px; /* Set a small height for the card */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect */
+.custom-card:hover {
+  background-color: #f8f9fa; /* Light background color change */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Image on the left */
+.card-img {
+  float: left; /* Float the image to the left */
+  width: 40px; /* Set the image width (e.g., PDF icon size) */
+  height: 40px; /* Set image height */
+  object-fit: contain; /* Ensure the image is not distorted */
+  margin-right: 10px; /* Space between image and text */
+  margin-top: -3px; /* Adjust top margin to center the image vertically */
+  
+}
+
+/* Content container */
+.content-container {
+  overflow: hidden; /* Prevent content from overflowing the floated image */
+  font-size: 14px; /* Adjust font size */
+  line-height: 1.5; /* Make the text tighter */
+}
+
+/* Link Styling */
+.card-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.card-link:hover {
+  color: #0056b3; /* Darken the color on hover */
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .custom-card {
+    height: auto; /* Allow height to adjust for mobile */
+  }
+
+  .card-img {
+    width: 30px; /* Adjust image size for mobile */
+    height: 30px; /* Adjust image size for mobile */
+    margin-right: 5px; /* Reduce space for mobile */
+    margin-top: -3px;
+  }
+
+  .content-container {
+    font-size: 12px; /* Adjust font size for mobile */
+  }
+}

@@ -1,0 +1,27 @@
+/* styles.css */
+
+.pagination-button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: grey;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination-button.active {
+  background-color: blue;
+}
+
+.pagination-button:hover {
+  background-color: darkgrey;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}

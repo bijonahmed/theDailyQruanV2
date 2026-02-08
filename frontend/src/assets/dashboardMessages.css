@@ -1,0 +1,89 @@
+/* Welcome Banner */
+.welcome-banner {
+  background: linear-gradient(135deg, #6f42c1, #5a32b3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Referral Card */
+.update-card .card {
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.update-card .card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+#referralUrl {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+}
+
+#referralUrl:focus {
+  border-color: #6f42c1;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(111, 66, 193, 0.2);
+}
+
+/* Category Items */
+.category_card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+}
+
+.category_card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(135deg, #6f42c1 0%, #b88cf0 100%);
+  color: white;
+}
+
+.category_card:hover .category_title {
+  color: white;
+}
+
+.category_card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+}
+
+.icon_wrapper {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.category_card:hover .icon_wrapper {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.icon_wrapper img {
+  max-width: 36px;
+  max-height: 36px;
+}
+
+.category_title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  transition: color 0.3s ease;
+}
+

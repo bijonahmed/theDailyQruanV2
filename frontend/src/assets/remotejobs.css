@@ -1,0 +1,328 @@
+.job-card {
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 24px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.job-header {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.company-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #f8f9fa;
+}
+
+.job-title {
+    color: #0d6efd;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 0 0 6px 0;
+}
+
+.company-name {
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 4px 0;
+}
+
+.job-info {
+    margin: 0;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.card-buttons {
+    margin-top: auto;
+    display: flex;
+    gap: 12px;
+}
+
+.details-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.details-btn:hover {
+    background-color: #0056b3;
+}
+
+.apply-btn {
+    background-color: #198754;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.apply-btn:hover {
+    background-color: #145c32;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #444;
+    font-weight: bold;
+}
+
+.modal-description {
+    margin-top: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 0;
+    flex-wrap: wrap;
+}
+
+.page-item {
+    border-radius: 8px;
+}
+
+.page-item.disabled .page-link {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    font-weight: 700;
+}
+
+.page-link {
+    border: 1px solid #dee2e6;
+    padding: 8px 16px;
+    background: white;
+    color: #007bff;
+    cursor: pointer;
+    border-radius: 8px;
+    user-select: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-link:hover:not(:disabled) {
+    background-color: #007bff;
+    color: white;
+}
+
+
+/* Modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-start;
+    /* aligns content to the left */
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal box content */
+.modal-content {
+    background-color: white;
+    max-width: 600px;
+    width: 90%;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: slideInLeft 0.4s ease-out forwards;
+    transform: translateX(-100%);
+    /* Initial off-screen position */
+}
+
+/* Close button */
+/* Modal overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    /* Align modal to the right */
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal box content */
+.modal-content {
+    background-color: white;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px 0 0 8px;
+    box-shadow: -10px 0 25px rgba(0, 0, 0, 0.2);
+    animation: slideInRight 0.4s ease-out forwards;
+    transform: translateX(100%);
+    /* Start off-screen right */
+}
+
+.card-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.details-btn {
+  background-color: #4f46e5; /* Indigo-600 */
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.details-btn:hover {
+  background-color: #4338ca; /* Indigo-700 */
+}
+
+
+
+/* Slide-in from right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Close button */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Filter By Country */
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;       /* wrap on smaller screens */
+  gap: 1rem;             /* space between columns */
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.filter-select {
+  flex: 1 1 300px;       /* grow & shrink, base width 300px */
+  max-width: 400px;
+  padding: 0.4rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Responsive tweak for very small screens */
+@media (max-width: 400px) {
+  .filter-select {
+    flex: 1 1 100%;      /* full width on narrow screens */
+  }
+}
+
+
+.apply-job-container {
+  margin-top: 20px;
+  text-align: center;
+  padding: 10px 0;
+  border-top: 1px solid #ddd;
+}
+
+.apply-job-button {
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  color: #fff;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.apply-job-button:hover,
+.apply-job-button:focus {
+  background-color: #616060;
+  border-color: #0056b3;
+  box-shadow: 0 6px 15px rgba(0, 86, 179, 0.5);
+  outline: none;
+}

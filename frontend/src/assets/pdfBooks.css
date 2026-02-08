@@ -1,0 +1,226 @@
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: #fff;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+  }
+  
+  .btn:hover {
+    opacity: 0.9;
+  }
+  
+
+
+  /* pdfbooks */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    list-style: none;
+  }
+  
+  .breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumb a:hover {
+    color: #0056b3;
+  }
+  
+  .breadcrumb span {
+    margin: 0 8px;
+    color: #6c757d;
+  }
+  
+  .breadcrumb a:last-of-type {
+    pointer-events: none;
+    color: #6c757d;
+  }
+  
+
+  .widget.category_list {
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background for the widget */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .unordered_list_block {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .unordered_list_block li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 10px; 
+	 background-color: #fff;
+	*/
+    margin-bottom: 10px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+   
+  .unordered_list_block li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: #333; /* Dark text for readability */
+  }
+  
+  .unordered_list_block li a span {
+    font-size: 14px;
+    color: #666; /* Lighter text color */
+  }
+  
+  .unordered_list_block li a span strong {
+    font-weight: bold;
+    color: #333; /* Darker text color for count */
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .col-6 {
+      flex: 0 0 50%;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .col-md-4 {
+      flex: 0 0 33.33%;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .col-md-2 {
+      flex: 0 0 20%;
+    }
+  }
+  
+  .tag-list {
+    list-style: none;          /* Remove default list styling */
+    padding: 0;                /* Remove default padding */
+    display: flex;             /* Display the tags in a row */
+    flex-wrap: wrap;           /* Allow the tags to wrap if the screen is smaller */
+    gap: 5px;                 /* Add some space between each tag */
+  }
+  
+  /* Styling for each tag item */
+  .tag-item {
+    background-color: #f0f0f0; /* Light background color */
+    border-radius: 5px;       /* Rounded corners for the tag */
+    padding: 5px 7px;         /* Padding for spacing */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  /* Styling for the tag links */
+  .tag-link {
+    text-decoration: none;     /* Remove underline */
+    color: #333;               /* Dark text color */
+    font-weight: 500;          /* Make the text bold */
+    display: inline-block;     /* Ensure padding works properly */
+  }
+  
+  /* Hover effect on the tags */
+  .tag-item:hover {
+    background-color: #007bff; /* Blue background on hover */
+    transform: scale(1.05);     /* Slight scale effect on hover */
+  }
+  
+  .tag-item:hover .tag-link {
+    color: #fff;               /* White text on hover */
+  }
+  
+  /* Media query to make the tags more responsive on smaller screens */
+  @media (max-width: 600px) {
+    .tag-list {
+      justify-content: center; /* Center the tags on small screens */
+    }
+  }
+
+
+  .course_item {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .course_item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .item_image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+  }
+
+  
+  .card-style {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .card-style:hover {
+    transform: translateY(-5px);
+  }
+  
+  .image-fit {
+    width: 100%;
+    height: 250px; /* Full size feel - adjust as needed */
+    object-fit: cover;
+  }
+
+  
+  .image-fit {
+    width: 100%;
+    height: auto;
+    max-height: 450px; /* Optional max height */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pay-btn {
+    padding: 10px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .pay-btn:hover {
+    background-color: #0056b3; /* Slightly darker blue */
+    transform: translateY(-2px);
+  }
+
+  
+  .large-img {
+    width: 100%;
+    height: auto;
+    max-height: 750px; /* Adjust as needed */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .large-img:hover {
+    transform: scale(1.02);
+  }
+  

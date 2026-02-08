@@ -1,0 +1,130 @@
+.exam_intro_section {
+    min-height: 90vh;
+    background: linear-gradient(135deg, #f0f8ff, #e6f0ff);
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .exam_main_title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #0d6efd;
+  }
+  
+  .exam_subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .exam_card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-top: 30px;
+  }
+  
+  .rules_heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #343a40;
+  }
+  
+  .exam_rules_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .exam_rules_list li {
+    font-size: 1rem;
+    color: #333;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .start_exam_btn {
+    background: #0d6efd;
+    color: #fff;
+    padding: 14px 35px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    transition: background 0.3s ease;
+    text-transform: uppercase;
+  }
+  
+  .start_exam_btn:hover {
+    background: #0041c4;
+    color: #fff;
+  }
+  
+  /* Decorations */
+  .deco_item {
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .deco_img_1 {
+    top: 10%;
+    left: 5%;
+  }
+  
+  .deco_img_2 {
+    bottom: 10%;
+    right: 5%;
+  }
+  
+  .deco_img_3 {
+    top: 50%;
+    right: 10%;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .exam_main_title {
+      font-size: 2.2rem;
+    }
+    
+    .exam_subtitle {
+      font-size: 1rem;
+    }
+    
+    .exam_card {
+      padding: 20px;
+    }
+  
+    .start_exam_btn {
+      padding: 12px 25px;
+      font-size: 1rem;
+    }
+  
+    .deco_img_1, .deco_img_2, .deco_img_3 {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .exam_main_title {
+      font-size: 1.8rem;
+    }
+  
+    .exam_subtitle {
+      font-size: 0.95rem;
+    }
+  
+    .rules_heading {
+      font-size: 1.3rem;
+    }
+  
+    .exam_rules_list li {
+      font-size: 0.95rem;
+    }
+  }
+  

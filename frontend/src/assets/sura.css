@@ -1,0 +1,127 @@
+.surah-number {
+  font-size: 20px;
+  font-weight: 600;
+  color: #056363;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.surah-name-arabic {
+  font-size: 18px;
+  margin-top: 6px;
+  color: #1f2937;
+}
+
+.quran-search-box {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 20px auto;
+  display: block;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 30px; /* Rounded pill shape */
+  border: 2px solid #0f766e; /* Quran-green border */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.quran-search-box:focus {
+  border-color: #059669; /* Darker green on focus */
+  box-shadow: 0 0 10px rgba(5, 150, 105, 0.3);
+}
+
+.section_title {
+  margin-bottom: 35px;
+}
+
+/* 5 Time prayer section */
+.prayer-section {
+  /* padding: 20px 20px; */
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+  border-radius: 16px;
+  margin: 20px auto;
+  max-width: 900px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.prayer-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+}
+
+.prayer-item {
+  list-style: none;
+  background: rgba(255, 255, 255, 0.08); /* very soft translucent card */
+  padding: 12px 15px;
+  border-radius: 16px;
+  width: 130px;
+  margin: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px); /* glassy effect */
+  color: #030303;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  text-align: center;
+}
+
+.prayer-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.prayer-name {
+  font-size: 16px;
+  margin-bottom: 6px;
+  font-weight: normal; /* removed bold */
+}
+
+.prayer-time {
+  font-size: 18px;
+  font-weight: normal; /* removed bold */
+}
+
+
+/* Mobile only: two columns */
+@media (max-width: 767px) {
+  .hero_section h1 {
+    font-size: 32px;
+    margin-top: -100px;
+  }
+  .mobile-two-columns .col-6 {
+    flex: 0 0 48%; /* two columns */
+    max-width: 48%; /* ensure proper width */
+    margin-bottom: 5px; /* reduce spacing */
+  }
+
+  .mobile-two-columns .prayer-item {
+    padding: 5px; /* less padding for mobile */
+  }
+
+  .mobile-two-columns .prayer-name {
+    font-size: 14px;
+  }
+
+  .mobile-two-columns .prayer-time {
+    font-size: 16px;
+  }
+}
+
+/* Desktop remains unchanged */

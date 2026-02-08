@@ -1,0 +1,14 @@
+/* TagList.css */
+
+.tag-list {
+    /* default mobile style - no shift */
+    margin-left: 0;
+  }
+  
+  @media (min-width: 768px) {
+    /* only apply left shift on tablets and up */
+    .tag-list {
+      margin-left: -15px;
+    }
+  }
+  

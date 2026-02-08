@@ -1,0 +1,233 @@
+/* Exam Section Styles */
+.exam_intro_section {
+  padding: 50px 0;
+  background: #f4f8fb;
+}
+
+.exam_main_title {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.exam-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.exam-container h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Question Box Styling */
+.question-box {
+  margin-bottom: 30px;
+}
+
+.question-text {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Timer Styling */
+.timer {
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #FF5722;
+}
+
+/* Answer Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+}
+
+.option input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  accent-color: #FF5722;
+}
+
+.option label {
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.option label:hover {
+  color: #FF5722;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.navigation-buttons button {
+  background-color: #FF5722;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 48%;
+}
+
+.navigation-buttons button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.navigation-buttons button:hover {
+  background-color: #d84315;
+}
+
+/* Answered Questions Counter */
+.answered-questions {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Container for the page */
+.page_wrapper {
+  font-family: 'Arial', sans-serif;
+}
+
+/* Submit Exam Button Styling */
+.submit-exam-btn {
+  padding: 15px 30px; /* Makes the button larger */
+  font-size: 18px; /* Increases font size for better visibility */
+  font-weight: bold; /* Makes the text bold */
+  background-color: #007bff; /* Primary blue color for the button */
+  color: white; /* White text color */
+  border: none; /* Removes the default border */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  transition: background-color 0.3s, transform 0.2s; /* Adds transition for hover effects */
+  cursor: pointer; /* Ensures the pointer changes when hovering */
+}
+
+.submit-exam-btn:hover {
+  background-color: #0056b3; /* Darker blue shade on hover */
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.submit-exam-btn:active {
+  transform: scale(1); /* Ensures the button returns to normal size when clicked */
+}
+
+.submit-exam-btn:disabled {
+  background-color: #d6d6d6; /* Gray color when disabled */
+  cursor: not-allowed; /* Changes cursor to indicate disabled state */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .exam-container {
+    padding: 20px;
+  }
+
+  .exam_main_title {
+    font-size: 28px;
+  }
+
+  .question-text {
+    font-size: 16px;
+  }
+
+  .timer {
+    font-size: 20px;
+    color: #FF5722;
+  }
+
+  .navigation-buttons button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  /* Submit Exam Button */
+  .submit-exam-btn {
+    padding: 12px 25px;
+    font-size: 16px;
+  }
+}
+
+/* Responsive for Mobile */
+@media (max-width: 576px) {
+  .exam-container {
+    padding: 15px;
+  }
+
+  .exam_main_title {
+    font-size: 24px;
+  }
+
+  .question-text {
+    font-size: 14px;
+  }
+
+  .timer {
+    font-size: 18px;
+  }
+
+  .navigation-buttons button {
+    font-size: 12px;
+    padding: 6px 12px;
+    width: 100%; /* Full width on mobile */
+    margin-top: 10px;
+  }
+
+  /* Submit Exam Button */
+  .submit-exam-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%; /* Full width on mobile */
+  }
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px; /* Adds spacing between options */
+}
+
+.option input[type="radio"] {
+  margin-right: 5px; /* Adds space between the radio button and the label */
+}
+
+.option-label {
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  margin-left: 0px; /* Adds space between the radio button and the text */
+}
+
+.option-label:hover {
+  color: #FF5722;
+}

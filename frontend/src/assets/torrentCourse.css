@@ -1,0 +1,85 @@
+/* Main Container */
+
+/* Description Styling */
+.description {
+  font-size: 17px;
+  color: #444;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+/* URL Share Section */
+.url-share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.url-input {
+  flex: 1 1 60%;
+  min-width: 260px;
+  max-width: 600px;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fafafa;
+  transition: box-shadow 0.2s ease;
+}
+
+.url-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* Copy Button */
+.copy-btn {
+  background-color: #198754;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.copy-btn:hover {
+  background-color: #157347;
+  transform: translateY(-2px);
+}
+
+/* Download Section */
+.download-section {
+  text-align: center;
+}
+
+.download-btn {
+  display: inline-block;
+  background-color: #0d6efd;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 16px rgba(13, 110, 253, 0.3);
+}
+
+.download-btn i {
+  margin-right: 10px;
+}
+
+
+@media (min-width: 992px) {
+  .container-fluid.mx-desktop {
+    margin-left: 1rem !important; /* mx-3 = 1rem */
+    margin-right: 1rem !important;
+  }
+}
+
+
