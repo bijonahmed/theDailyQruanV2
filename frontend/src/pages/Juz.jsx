@@ -61,8 +61,8 @@ const Juz = () => {
 
         <main className="page_content bg_info">
           {/* Banner Section */}
-          <section className="page_banner decoration_wrap mt-5">
-            <div className="container text-center">
+          <section className="page_banner decoration_wrap">
+            <div className="container text-center  mt-5">
               <h1 className="page_heading">Quran Juz Reading & Audio</h1>
               <p className="page_subheading">
                 Explore the Quran one Juz at a time. Read Arabic with proper

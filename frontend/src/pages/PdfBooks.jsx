@@ -38,9 +38,9 @@ const PdfBooks = () => {
 
         <main className="page_content bg_info">
           {/* Banner Section */}
-          <section className="page_banner decoration_wrap mt-5">
+          <section className="page_banner decoration_wrap">
             <div className="container text-center">
-              <h1 className="page_heading">Quran Ebook</h1>
+              <h1 className="page_heading  mt-5">Quran Ebook</h1>
               <p className="page_subheading">
                 Explore the Quran one Juz at a time. Read Arabic with proper
                 tajweed, understand with trusted translations, and listen to
@@ -60,34 +60,7 @@ const PdfBooks = () => {
               </p>
             </div>
 
-            {/* Decorative Shapes */}
-            <div
-              className="deco_item deco_img_1"
-              data-parallax='{"y" : -200, "smoothness": 6}'
-              style={{
-                transform: "translate3d(0px, 0px, 0px)",
-                WebkitTransform: "translate3d(0px,0px,0px)",
-              }}
-            >
-              <img
-                src="/assets/images/shapes/line_shape_1.png"
-                alt="Line Shape"
-              />
-            </div>
-
-            <div
-              className="deco_item deco_img_2"
-              data-parallax='{"y" : 200, "smoothness": 6}'
-              style={{
-                transform: "translate3d(0px, 0.005px, 0px)",
-                WebkitTransform: "translate3d(0px,0.005px,0px)",
-              }}
-            >
-              <img
-                src="/assets/images/shapes/dot_shape_2.png"
-                alt="Dot Shape"
-              />
-            </div>
+           
           </section>
 
           {/* Child Categories */}
