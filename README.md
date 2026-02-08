@@ -1,4 +1,4 @@
-# theDailyQruanV2
+# TheDailyQruanV2
 Learn the Quran, One Day at a Time
 The Daily Quran
 
