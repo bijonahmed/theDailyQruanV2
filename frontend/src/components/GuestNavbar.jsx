@@ -159,7 +159,16 @@ const Navbar = () => {
                       <Link className="nav-link" to="/juz">
                         Juz
                       </Link>
+                      
                     </li>
+                      <li>
+
+                          <Link className="nav-link" to="/quran-translation">
+                        Quran Translation
+                      </Link>
+                      </li>
+
+
                     <li>
                       <Link className="nav-link" to="/pdf-books">
                         PDF

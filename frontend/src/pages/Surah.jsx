@@ -8,7 +8,7 @@ import GuestNavbar from "../components/GuestNavbar";
 import "../assets/surah.css";
 import axios from "/config/axiosConfig";
 
-const Juz = () => {
+const Surah = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suraList, setSuraList] = useState([]);
   const [metaData, setMetaData] = useState({
@@ -159,4 +159,4 @@ const Juz = () => {
   );
 };
 
-export default Juz;
+export default Surah;

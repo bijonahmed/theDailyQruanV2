@@ -58,6 +58,14 @@ const Footer = () => {
               <li>
                 <Link to="/terms-and-condition">Terms &amp; Condition</Link>
               </li>
+              <li>
+                <Link
+                  to="https://www.facebook.com/thedailyquranstudy"
+                  target="_blank"
+                >
+                  Facebook
+                </Link>
+              </li>
             </ul>
             <p className="copyright_text mb-0" style={{ color: "white" }}>
               © Copyrights {currentYear} <Link to="#">thedailyquran</Link> All

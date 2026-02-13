@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Juz from "../pages/Juz.jsx";
 import JuzDetails from "../pages/JuzDetails.jsx";
 import Surah from "../pages/Surah.jsx";
+import Quran from "../pages/Quran.jsx";
 import Index from "../pages/Index.jsx";
 import About from "../pages/About";
 import SiteMap from "../pages/SiteMap.jsx";
@@ -59,6 +60,8 @@ const AppRouter = () => {
     <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/surah" element={<Surah />} />
+      <Route path="/quran-translation" element={<Quran />} />
+      
       <Route path="/juz" element={<Juz />} />
       <Route path="/juz/:id" element={<JuzDetails />} />
       <Route path="/edit-brand/:id" element={<Editbrand />} />
