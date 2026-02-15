@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Islamic Books Viewer</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{background:#f5f6fa}
+.sidebar,.booklist{height:90vh;overflow:auto}
+iframe{height:90vh}
+button{font-size:14px}
+</style>
+
+</head>
+<body>
+
+<div class="container-fluid py-3">
+<h4 class="text-center text-primary mb-4">The Daily quran total language : 50+ have more ebooks</h4>
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        <label for="languageSelector" class="form-label">Select Language</label>
+        <select id="languageSelector" class="form-select">
+            <option>Loading languages...</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+
+<!-- CATEGORY -->
+<div class="col-md-3 sidebar border-end">
+<h6>Categories</h6>
+<div id="categories"></div>
+</div>
+
+<!-- BOOKS -->
+<div class="col-md-4 booklist border-end">
+<h6>Books</h6>
+<div id="books">Select category</div>
+</div>
+
+<!-- PDF VIEW -->
+<div class="col-md-5">
+<iframe id="pdfFrame" class="w-100 border rounded bg-white"></iframe>
+</div>
+
+</div>
+</div>
+
+<script>
+const API_KEY = "paV29H2gm56kvLPy";
+let LANGUAGE = "bn"; // default language
+
+// Your language JSON array (can replace with fetch from API)
+const languages = [
+      { langsymbol: "ar", langtranslation: "عربي" },
+    { langsymbol: "ar", langtranslation: "Arabic" },
+    { langsymbol: "uz", langtranslation: "أوزبكي" },
+    { langsymbol: "uz", langtranslation: "Uzbek" },
+    { langsymbol: "am", langtranslation: "أمهري" },
+    { langsymbol: "am", langtranslation: "Amharic" },
+    { langsymbol: "ur", langtranslation: "أردو" },
+    { langsymbol: "ur", langtranslation: "Urdu" },
+    { langsymbol: "az", langtranslation: "أذري" },
+    { langsymbol: "az", langtranslation: "Azerbaijani" },
+    { langsymbol: "zh", langtranslation: "صيني" },
+    { langsymbol: "zh", langtranslation: "Chinese" },
+    { langsymbol: "bn", langtranslation: "بنغالي" },
+    { langsymbol: "bn", langtranslation: "Bengali" },
+    { langsymbol: "lg", langtranslation: "لوغندي" },
+    { langsymbol: "lg", langtranslation: "Ganda" },
+    { langsymbol: "as", langtranslation: "آسامي" },
+    { langsymbol: "as", langtranslation: "Assamese" },
+    { langsymbol: "mos", langtranslation: "موري" },
+    { langsymbol: "mos", langtranslation: "Mõõré" },
+    { langsymbol: "yo", langtranslation: "يوربا" },
+    { langsymbol: "yo", langtranslation: "Yoruba" },
+    { langsymbol: "ha", langtranslation: "هوسا" },
+    { langsymbol: "ha", langtranslation: "Hausa" },
+    { langsymbol: "sx", langtranslation: "سوننكي" },
+    { langsymbol: "sx", langtranslation: "Soninke" },
+    { langsymbol: "de", langtranslation: "ألماني" },
+    { langsymbol: "de", langtranslation: "German" },
+    { langsymbol: "sw", langtranslation: "سواحيلي" },
+    { langsymbol: "sw", langtranslation: "Swahili" },
+    { langsymbol: "th", langtranslation: "تايلندي" },
+    { langsymbol: "th", langtranslation: "Thai" },
+    { langsymbol: "ti", langtranslation: "تجريني" },
+    { langsymbol: "ti", langtranslation: "Tigrinya" },
+    { langsymbol: "bs", langtranslation: "بوسني" },
+    { langsymbol: "bs", langtranslation: "Bosnian" },
+    { langsymbol: "ta", langtranslation: "تاميلي" },
+    { langsymbol: "ta", langtranslation: "Tamil" },
+    { langsymbol: "es", langtranslation: "إسباني" },
+    { langsymbol: "es", langtranslation: "Spanish" },
+    { langsymbol: "si", langtranslation: "سنهالي" },
+    { langsymbol: "si", langtranslation: "Sinhala" },
+    { langsymbol: "ne", langtranslation: "نيبالي" },
+    { langsymbol: "ne", langtranslation: "Nepali" },
+    { langsymbol: "en", langtranslation: "إنجليزي" },
+    { langsymbol: "en", langtranslation: "English" },
+    { langsymbol: "te", langtranslation: "تلقو" },
+    { langsymbol: "te", langtranslation: "Telugu" },
+    { langsymbol: "id", langtranslation: "إندونيسي" },
+    { langsymbol: "id", langtranslation: "Indonesian" },
+    { langsymbol: "ml", langtranslation: "مليالم" },
+    { langsymbol: "ml", langtranslation: "Malayalam" },
+    { langsymbol: "ku", langtranslation: "كردي" },
+    { langsymbol: "ku", langtranslation: "Kurdish" },
+    { langsymbol: "fr", langtranslation: "فرنسي" },
+    { langsymbol: "fr", langtranslation: "French" },
+    { langsymbol: "fa", langtranslation: "فارسي" },
+    { langsymbol: "fa", langtranslation: "Persian" },
+    { langsymbol: "tz", langtranslation: "أمازيغي" },
+    { langsymbol: "tz", langtranslation: "Tamazight" },
+    { langsymbol: "ru", langtranslation: "روسي" },
+    { langsymbol: "ru", langtranslation: "Russian" },
+    { langsymbol: "st", langtranslation: "سوتي" },
+    { langsymbol: "st", langtranslation: "Southern Sotho" },
+    { langsymbol: "he", langtranslation: "عبري" },
+    { langsymbol: "he", langtranslation: "Hebrew" },
+    { langsymbol: "hi", langtranslation: "هندي" },
+    { langsymbol: "hi", langtranslation: "Hindi" },
+    { langsymbol: "ug", langtranslation: "أيغوري" },
+    { langsymbol: "ug", langtranslation: "Uyghur" },
+    { langsymbol: "ko", langtranslation: "كوري" },
+    { langsymbol: "ko", langtranslation: "Korean" },
+    { langsymbol: "tl", langtranslation: "فلبيني تجالوج" },
+    { langsymbol: "tl", langtranslation: "Tagalog" },
+    { langsymbol: "ms", langtranslation: "ملايو" },
+    { langsymbol: "ms", langtranslation: "Malay" },
+    { langsymbol: "sq", langtranslation: "ألباني" },
+    { langsymbol: "sq", langtranslation: "Albanian" },
+    { langsymbol: "it", langtranslation: "إيطالي" },
+    { langsymbol: "it", langtranslation: "Italian" },
+    { langsymbol: "ka", langtranslation: "جورجي" },
+    { langsymbol: "ka", langtranslation: "Georgian" },
+    { langsymbol: "pt", langtranslation: "برتغالي" },
+    { langsymbol: "pt", langtranslation: "Portuguese" },
+    { langsymbol: "uk", langtranslation: "أوكراني" },
+    { langsymbol: "uk", langtranslation: "Ukrainian" },
+    { langsymbol: "ps", langtranslation: "بشتو" },
+    { langsymbol: "ps", langtranslation: "Pashto" }
+    // Add the rest of your languages here
+];
+
+/* ===============================
+   LOAD LANGUAGES DYNAMICALLY
+=================================*/
+function loadLanguages() {
+    const selector = document.getElementById("languageSelector");
+
+    // Create unique languages and combine their translations
+    const map = new Map();
+    languages.forEach(lang => {
+        if(map.has(lang.langsymbol)){
+            let val = map.get(lang.langsymbol);
+            val.push(lang.langtranslation);
+            map.set(lang.langsymbol, val);
+        } else {
+            map.set(lang.langsymbol, [lang.langtranslation]);
+        }
+    });
+
+    let html = "";
+    map.forEach((translations, symbol) => {
+        html += `<option value="${symbol}" ${symbol===LANGUAGE ? "selected" : ""}>
+                    ${translations.join(" / ")}
+                 </option>`;
+    });
+
+    selector.innerHTML = html;
+
+    // Load categories for default language
+    loadCategories();
+
+    // Change language event
+    selector.addEventListener("change", e => {
+        LANGUAGE = e.target.value;
+        loadCategories();
+    });
+}
+
+/* ===============================
+   LOAD CATEGORIES
+=================================*/
+function loadCategories() {
+    document.getElementById("categories").innerHTML = "Loading...";
+    fetch(`https://api3.islamhouse.com/v3/561/categories/showall/${LANGUAGE}/json`)
+    .then(res => res.json())
+    .then(data => {
+        let html = "";
+        data.forEach(cat => {
+            if(cat.source_id && cat.title){
+                html += `
+                <button class="btn btn-outline-primary btn-sm w-100 mb-2 text-start"
+                    onclick="loadBooks(${cat.source_id})">
+                    ${cat.title}
+                </button>`;
+            }
+        });
+        document.getElementById("categories").innerHTML = html || "No Categories Found";
+        document.getElementById("books").innerHTML = "Select category";
+        document.getElementById("pdfFrame").src = "";
+    })
+    .catch(()=>{
+        document.getElementById("categories").innerHTML = "Failed to load categories";
+        document.getElementById("books").innerHTML = "";
+    });
+}
+
+/* ===============================
+   LOAD BOOKS BY CATEGORY
+=================================*/
+function loadBooks(catId){
+    document.getElementById("books").innerHTML = "Loading...";
+    fetch(`https://api3.islamhouse.com/v3/${API_KEY}/main/get-category-items/${catId}/books/${LANGUAGE}/${LANGUAGE}/1/50/json`)
+    .then(res => res.json())
+    .then(data => {
+        let html = "";
+        if(data.data && data.data.length > 0){
+            data.data.forEach(book => {
+                if(book.attachments && book.attachments.length > 0){
+                    let pdf = book.attachments.find(a => a.extension_type === "PDF");
+                    if(pdf && pdf.url){
+                        html += `
+                        <button class="btn btn-light btn-sm w-100 mb-2 text-start"
+                            onclick="openPDF('${pdf.url}')">
+                            ${book.title}
+                        </button>`;
+                    }
+                }
+            });
+        } else {
+            html = "No Books Found";
+        }
+        document.getElementById("books").innerHTML = html;
+    })
+    .catch(()=>{
+        document.getElementById("books").innerHTML = "Failed to load";
+    });
+}
+
+/* ===============================
+   OPEN PDF
+=================================*/
+function openPDF(url){
+    document.getElementById("pdfFrame").src = url;
+}
+
+// Initial load
+loadLanguages();
+
+</script>
+
+</body>
+</html>
