@@ -1,34 +1,36 @@
 // src/pages/Index.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import Footer from "../components/Footer";
 import "../assets/sura.css";
-import axios from "/config/axiosConfig";
 import GuestNavbar from "../components/GuestNavbar";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
-
-  setTimeout(() => {
-    setLoading(false);
-  }, 1500);
-
-  const [categorys, setParentCategory] = useState([]);
-  const [childcategorys, setChildCategory] = useState([]);
-  const [childCatData, setChidCategory] = useState([]);
   const [suraList, setSuraList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [prayerTimes, setPrayerTimes] = useState(null);
-  // Example: fetch surah list from API
+
+  /* ---------------- FIX LOADING (IMPORTANT) ---------------- */
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  /* ---------------- FETCH SURAH LIST ---------------- */
   useEffect(() => {
     fetch("https://api.alquran.cloud/v1/surah")
       .then((res) => res.json())
-      .then((data) => setSuraList(data))
+      .then((data) => setSuraList(data.data)) // store only array
       .catch((err) => console.error(err));
   }, []);
 
+  /* ---------------- FETCH PRAYER TIMES ---------------- */
   useEffect(() => {
     fetch(
       "https://api.aladhan.com/v1/timingsByCity?city=Dhaka&country=Bangladesh&method=2",
@@ -38,21 +40,20 @@ const Index = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  // Filter surah list based on search
-  const filteredSurahs = suraList?.data?.filter(
-    (surah) =>
-      surah.englishName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      surah.name.includes(searchTerm) ||
-      surah.number.toString().includes(searchTerm),
-  );
+  /* ---------------- INSTANT OPTIMIZED SEARCH ---------------- */
+  const filteredSurahs = useMemo(() => {
+    if (!searchTerm) return suraList;
 
-  const [metaData, setMetaData] = useState({
-    title: "Welcome to TheDailyQuran",
-    description:
-      "Read, listen, and study the Quran online. Daily Quran provides Juz reading, translations, recitations, and free Islamic eBooks to help you grow in knowledge and spirituality.",
-    keywords:
-      "Quran, Daily Quran, Juz reading, Quran PDF, Islamic eBooks, Quran recitation, Tafsir, Hadith, Seerah",
-  });
+    const lowerSearch = searchTerm.toLowerCase();
+
+    return suraList.filter((surah) => {
+      return (
+        surah.englishName.toLowerCase().includes(lowerSearch) ||
+        surah.name.includes(searchTerm) ||
+        surah.number.toString().includes(searchTerm)
+      );
+    });
+  }, [searchTerm, suraList]);
 
   useEffect(() => {
     const animateLink = document.createElement("link");
@@ -60,18 +61,24 @@ const Index = () => {
     animateLink.type = "text/css";
     animateLink.href = "/assets/css/animate.css";
     document.head.appendChild(animateLink);
-
     const styleLink = document.createElement("link");
     styleLink.rel = "stylesheet";
     styleLink.type = "text/css";
     styleLink.href = "/demo_assets/css/style.css";
     document.head.appendChild(styleLink);
-
     return () => {
       document.head.removeChild(animateLink);
       document.head.removeChild(styleLink);
     };
   }, []);
+
+  const metaData = {
+    title: "Welcome to TheDailyQuran",
+    description:
+      "Read, listen, and study the Quran online. Daily Quran provides Juz reading, translations, recitations, and free Islamic eBooks to help you grow in knowledge and spirituality.",
+    keywords:
+      "Quran, Daily Quran, Juz reading, Quran PDF, Islamic eBooks, Quran recitation, Tafsir, Hadith, Seerah",
+  };
 
   return (
     <div>

@@ -83,8 +83,6 @@ const Surah = () => {
                 reflection.
               </p>
             </div>
-
-           
           </section>
 
           {/* Child Categories */}
@@ -108,25 +106,18 @@ const Surah = () => {
                       {/* --- Surah Grid --- */}
                       <div className="row justify-content-center mt-5">
                         {filteredSurahs?.map((surah) => (
-                          <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 d-flex mb-2">
-                            <div
-                              className="card surah-card w-100 border-0 shadow-lg text-center "
-                              style={{
-                                animationDelay: `${surah.number * 0.03}s`,
-                              }}
-                            >
+                          <Link
+                            to={`/surah/${surah.number}`}
+                            className="col-xl-3 col-lg-4 col-md-6 col-sm-6 d-flex mb-2 text-decoration-none text-dark"
+                          >
+                            <div className="card surah-card w-100 border-0 shadow-lg text-center">
                               <div className="card-body mt-3">
                                 <div className="surah-badge mb-3 mx-auto">
                                   {surah.number}
                                 </div>
 
                                 <h5 className="card-title fw-bold mb-1">
-                                  <Link
-                                    to={`/surah/${surah.englishName.toLowerCase()}`}
-                                    className="text-decoration-none text-dark"
-                                  >
-                                    {surah.englishName}
-                                  </Link>
+                                  {surah.englishName}
                                 </h5>
 
                                 <p className="fs-4 text-success mb-1 surah-arabic">
@@ -138,7 +129,7 @@ const Surah = () => {
                                 </span>
                               </div>
                             </div>
-                          </div>
+                          </Link>
                         ))}
 
                         {filteredSurahs?.length === 0 && (

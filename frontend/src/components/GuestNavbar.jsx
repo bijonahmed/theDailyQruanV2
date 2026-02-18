@@ -1,6 +1,6 @@
 // src/Navbar.js
 import React, { useState, useEffect, useContext } from "react";
-import { Link,useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import AuthUser from "../components/AuthUser";
 import axios from "/config/axiosConfig";
@@ -30,7 +30,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
   }, [showslug]);
 
   const logoutUser = async () => {
@@ -54,7 +54,7 @@ const Navbar = () => {
   const logoStyle =
     location.pathname === "/" // Home route
       ? {
-          height: isMobile ? "60px" : "60px", // Home: mobile 60px, desktop 60px
+          height: isMobile ? "60px" : "55px", // Home: mobile 60px, desktop 60px
           width: isMobile ? "73px" : "90px",
         }
       : {
@@ -159,15 +159,18 @@ const Navbar = () => {
                       <Link className="nav-link" to="/juz">
                         Juz
                       </Link>
-                      
                     </li>
-                      <li>
-
-                          <Link className="nav-link" to="/quran-translation">
+                    <li>
+                      <Link className="nav-link" to="/quran-translation">
                         Quran Translation
                       </Link>
-                      </li>
+                    </li>
 
+                    <li>
+                      <Link className="nav-link" to="/islamic-wallpaper">
+                        Islamic Wallpaper
+                      </Link>
+                    </li>
 
                     <li>
                       <Link className="nav-link" to="/pdf-books">

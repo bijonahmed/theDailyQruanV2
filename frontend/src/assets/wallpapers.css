@@ -1,0 +1,159 @@
+/* Cards */
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.card img {
+  height: 230px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* Categories */
+.category-wrapper {
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+.category-wrapper .btn {
+  display: inline-block;
+  margin: 3px;
+  transition: 0.3s;
+  min-width: 80px;
+}
+.category-wrapper .btn.active {
+  background-color: #198754;
+  color: white;
+}
+
+/* Modal */
+.modal-content {
+  background: #111;
+  border-radius: 20px;
+  padding: 15px;
+  max-width: 95vw;  /* responsive width */
+  margin: auto;
+}
+.modal-dialog {
+  max-width: 90vw; /* large modal on desktop */
+  width: 100%;
+  margin: 1.75rem auto;
+}
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+.modal-img-wrapper {
+  overflow: hidden;
+  max-height: 85vh;  /* make modal image very tall */
+  text-align: center;
+}
+.modal-img {
+  transition: transform 0.3s ease;
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* Zoom & navigation buttons */
+.zoom-controls button,
+.modal-content .btn {
+  margin: 5px;
+  min-width: 70px;
+  font-weight: 500;
+}
+
+/* Pagination */
+.pagination .page-link {
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modal-img-wrapper {
+    max-height: 60vh;
+  }
+  .category-wrapper .btn {
+    min-width: 60px;
+    font-size: 0.85rem;
+  }
+  .zoom-controls button,
+  .modal-content .btn {
+    min-width: 60px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-img-wrapper {
+    max-height: 50vh;
+  }
+  .zoom-controls button,
+  .modal-content .btn {
+    min-width: 50px;
+    font-size: 0.75rem;
+    margin: 3px;
+  }
+  .category-wrapper .btn {
+    min-width: 50px;
+    font-size: 0.75rem;
+  }
+}
+
+
+/* Category buttons */
+.category-wrapper {
+  display: flex;
+  flex-wrap: wrap;       /* wrap to next line instead of scrolling */
+  justify-content: center;
+  gap: 10px;             /* spacing between buttons */
+  margin-bottom: 20px;
+}
+
+.category-wrapper .btn {
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 25px;   /* pill shape */
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 2px solid #198754;
+  color: #000;           /* black text */
+  background-color: #fff; /* white background */
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category-wrapper .btn:hover {
+  background-color: #198754; /* green hover */
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.category-wrapper .btn.active {
+  background-color: #198754;
+  color: #fff;
+  border-color: #198754;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .category-wrapper .btn {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-wrapper .btn {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+}

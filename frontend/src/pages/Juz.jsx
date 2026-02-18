@@ -72,34 +72,8 @@ const Juz = () => {
               </p>
             </div>
 
-            {/* Decorative Shapes */}
-            <div
-              className="deco_item deco_img_1"
-              data-parallax='{"y" : -200, "smoothness": 6}'
-              style={{
-                transform: "translate3d(0px, 0px, 0px)",
-                WebkitTransform: "translate3d(0px,0px,0px)",
-              }}
-            >
-              <img
-                src="/assets/images/shapes/image_2.png"
-                alt="Line Shape"
-              />
-            </div>
 
-            <div
-              className="deco_item deco_img_2"
-              data-parallax='{"y" : 200, "smoothness": 6}'
-              style={{
-                transform: "translate3d(0px, 0.005px, 0px)",
-                WebkitTransform: "translate3d(0px,0.005px,0px)",
-              }}
-            >
-              <img
-                src="/assets/images/shapes/image_1.png"
-                alt="Dot Shape"
-              />
-            </div>
+        
           </section>
 
           {/* Child Categories */}

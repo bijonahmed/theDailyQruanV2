@@ -2,6 +2,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Juz from "../pages/Juz.jsx";
+import IslamicWallpaper from "../pages/IslamicWallpaper.jsx";
 import JuzDetails from "../pages/JuzDetails.jsx";
 import Surah from "../pages/Surah.jsx";
 import Quran from "../pages/Quran.jsx";
@@ -61,6 +62,7 @@ const AppRouter = () => {
       <Route path="/" element={<Index />} />
       <Route path="/surah" element={<Surah />} />
       <Route path="/quran-translation" element={<Quran />} />
+      <Route path="/islamic-wallpaper" element={<IslamicWallpaper />} />
       
       <Route path="/juz" element={<Juz />} />
       <Route path="/juz/:id" element={<JuzDetails />} />
