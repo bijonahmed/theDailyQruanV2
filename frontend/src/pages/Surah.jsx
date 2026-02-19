@@ -107,7 +107,7 @@ const Surah = () => {
                       <div className="row justify-content-center mt-5">
                         {filteredSurahs?.map((surah) => (
                           <Link
-                            to={`/surah/${surah.number}`}
+                            to={`/surah/${surah.englishName.toLowerCase()}`}
                             className="col-xl-3 col-lg-4 col-md-6 col-sm-6 d-flex mb-2 text-decoration-none text-dark"
                           >
                             <div className="card surah-card w-100 border-0 shadow-lg text-center">

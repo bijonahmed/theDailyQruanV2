@@ -1,330 +1,348 @@
-import React, { useState, useEffect, useContext } from "react";
+// src/pages/Index.js
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import GuestNavbar from "../components/GuestNavbar";
-import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import { useParams } from "react-router-dom";
+import GuestNavbar from "../components/GuestNavbar";
+import "../assets/pdf.css"; // your external CSS
 import axios from "/config/axiosConfig";
-import "../assets/pdfBooks.css";
-import "../assets/taglist.css";
-import Loader from "../components/Loader";
-import { CartContext } from "../CartContext";
-import { useNavigate } from "react-router-dom";
 
-const cartButtonStyle = {
-  padding: "8px 12px",
-  backgroundColor: "#007bff",
-  color: "#fff",
-  border: "none",
-  borderRadius: "5px",
-  cursor: "pointer",
-  fontSize: "14px",
-};
-const buttonGroupStyle = {
-  display: "flex",
-  justifyContent: "space-between",
-  marginTop: "15px",
-};
+const PdfBooks = () => {
+  const [metaData] = useState({
+    title: "The Daily Quran",
+    description:
+      "Explore Juz of the Quran with full translation, explanation, and recitation.",
+    keywords: "Quran, Islamic Books, PDF, eBooks",
+  });
 
-const detailsButtonStyle = {
-  padding: "8px 12px",
-  backgroundColor: "#f1f1f1",
-  color: "#333",
-  border: "1px solid #ccc",
-  borderRadius: "5px",
-  textDecoration: "none",
-  fontSize: "14px",
-};
-const Category = () => {
-  // Example SEO data; replace with dynamic data as needed
-  const seoData = {
-    title: `PDF`,
-    description: `Explore courses and tutorials category on My Awesome Website.`,
-    keywords: `PDF ebooks, courses, tutorials, My Awesome Website`,
-  };
+  const API_KEY = "paV29H2gm56kvLPy";
 
-  const [loading, setLoading] = useState(true); // Add loading state
-  const [categorys, setChidCategory] = useState([]);
-  const [tags, setTags] = useState([]);
-  const [serviceData, setServiceData] = useState([]);
-  const [childCategory, setChildCategory] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredCategories, setFilteredCategories] = useState([]);
-  const { addToCart } = useContext(CartContext);
-  const navigate = useNavigate();
-  const childfetchData = async () => {
-    try {
-      const response = await axios.get(`/public/getAllChildCaegorys`);
-      setTags(response.data.result);
-      setChildCategory(response.data); // Save the fetched categories
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  const [language, setLanguage] = useState("bn");
+  const [languages, setLanguages] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [books, setBooks] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedPdf, setSelectedPdf] = useState("");
+  const [loadingCategories, setLoadingCategories] = useState(false);
+  const [loadingBooks, setLoadingBooks] = useState(false);
 
-  const handleOpenModal = async (service) => {
-    navigate(`/guide-details/${service.slug}`);
-  };
+  const languagesData = [
+    { langsymbol: "bn", langtranslation: "Bengali" },
+    { langsymbol: "en", langtranslation: "English" },
+    { langsymbol: "ar", langtranslation: "Arabic" },
+    { langsymbol: "ur", langtranslation: "Urdu" },
+    { langsymbol: "fr", langtranslation: "French" },
+  ];
+
   useEffect(() => {
-    const fetchService = async () => {
-      try {
-        setLoading(true); // Set loading to true before fetching data
-        const response = await axios.get(`/public/geteServiceList`);
-        // console.log("Fetched categories:", response.data); // Log the response to verify
-        setServiceData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false); // Set loading to false after fetching data
-      }
-    };
-
-    const fetchData = async () => {
-      try {
-        setLoading(true); // Set loading to true before fetching data
-        const response = await axios.get(`/public/getepdfCategoryList`);
-        // console.log("Fetched categories:", response.data); // Log the response to verify
-        setChidCategory(response.data);
-        setChildCategory(Array.isArray(response.data) ? response.data : []);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false); // Set loading to false after fetching data
-      }
-    };
-
-    fetchData();
-    childfetchData();
-    fetchService();
+    const formatted = languagesData.map((lang) => ({
+      symbol: lang.langsymbol,
+      label: lang.langtranslation,
+    }));
+    setLanguages(formatted);
   }, []);
 
-  // Handle input change
-  const handleInputChange = (event) => {
-    const query = event.target.value;
-    setSearchQuery(query); // Update search query state
+  useEffect(() => {
+    loadCategories();
+  }, [language]);
 
-    // Filter categories based on the search query
-    if (Array.isArray(childCategory)) {
-      const filtered = childCategory.filter((category) =>
-        category.name.toLowerCase().includes(query.toLowerCase())
+  const loadCategories = async () => {
+    setLoadingCategories(true);
+    setBooks([]);
+    setSelectedCategory(null);
+    try {
+      const res = await axios.get(
+        `https://api3.islamhouse.com/v3/561/categories/showall/${language}/json`,
       );
-      setFilteredCategories(filtered); // Update filtered categories
+      setCategories(res.data || []);
+    } catch (err) {
+      console.log(err);
     }
+    setLoadingCategories(false);
+  };
+
+  const loadBooks = async (cat) => {
+    setLoadingBooks(true);
+    setSelectedPdf("");
+    setSelectedCategory(cat);
+    try {
+      const res = await axios.get(
+        `https://api3.islamhouse.com/v3/${API_KEY}/main/get-category-items/${cat.source_id}/books/${language}/${language}/1/50/json`,
+      );
+
+      if (res.data.data) {
+        const pdfBooks = res.data.data
+          .map((book) => {
+            if (book.attachments) {
+              const pdf = book.attachments.find(
+                (a) => a.extension_type === "PDF",
+              );
+              if (pdf) {
+                return { title: book.title, url: pdf.url };
+              }
+            }
+            return null;
+          })
+          .filter(Boolean);
+        setBooks(pdfBooks);
+      } else {
+        setBooks([]);
+      }
+    } catch (err) {
+      console.log(err);
+      setBooks([]);
+    }
+    setLoadingBooks(false);
+  };
+
+  const openPdf = (url) => {
+    setSelectedPdf(url);
+
+    // hide eBook list modal
+    const listModalEl = document.getElementById("ebookListModal");
+    const listModal = window.bootstrap.Modal.getInstance(listModalEl);
+    if (listModal) listModal.hide();
+
+    // open PDF reader modal
+    const readerModalEl = document.getElementById("ebookReaderModal");
+    const readerModal = new window.bootstrap.Modal(readerModalEl);
+    readerModal.show();
+  };
+
+  const openListModal = (cat) => {
+    loadBooks(cat);
+
+    const modalEl = document.getElementById("ebookListModal");
+    const modal = new window.bootstrap.Modal(modalEl);
+    modal.show();
+  };
+
+  const closeModal = () => {
+    setSelectedCategory(null);
+    setSelectedPdf("");
+    setBooks([]);
+
+    // hide all modals if open
+    const listModalEl = document.getElementById("ebookListModal");
+    const readerModalEl = document.getElementById("ebookReaderModal");
+    const listModal = window.bootstrap.Modal.getInstance(listModalEl);
+    const readerModal = window.bootstrap.Modal.getInstance(readerModalEl);
+    if (listModal) listModal.hide();
+    if (readerModal) readerModal.hide();
   };
 
   return (
-    <>
+    <div>
       <Helmet>
-        <title>{seoData.title}</title>
-        <meta name="description" content={seoData.description} />
-        <meta name="keywords" content={seoData.keywords} />
+        <title>{metaData.title}</title>
+        <meta name="description" content={metaData.description} />
+        <meta name="keywords" content={metaData.keywords} />
       </Helmet>
 
       <GuestNavbar />
-      <br />
+
       <div className="page_wrapper">
-        {/* Back To Top - Start */}
-        <div className="backtotop">
-          <a href="#" className="scroll">
-            <i className="far fa-arrow-up" />
-            <i className="far fa-arrow-up" />
-          </a>
-        </div>
-        <br />
-
-        <main className="page_content">
-          <section
-            className="banner_section banner_style_4 mouse_move"
-            style={{ minHeight: "300px", backgroundSize: "80%" }}
-          >
-            <div
-              className="decoration_wrap"
-              style={{
-                backgroundImage:
-                  'url("/assets/images/shapes/shapes_group_1.png")',
-                minHeight: "300px",
-                backgroundSize: "80%",
-              }}
-            >
-              <div className="container">
-                <div className="row justify-content-center">
-                  <div className="col col-lg-7">
-                    <div className="banner_content text-center">
-                      <h1
-                        className="banner_title wow fadeInUp"
-                        data-wow-delay=".1s"
-                      >
-                        Free Unlimited PDF Access
-                      </h1>
-                      <div
-                        className="form_item m-0 wow fadeInUp"
-                        data-wow-delay=".3s"
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <main className="page_content bg_info">
+          <section className="page_banner decoration_wrap">
+            <div className="container text-center">
+              <h1 className="page_heading mt-5">Islamic eBook Library</h1>
+              <p className="page_subheading text-center">
+                Browse authentic Islamic books in multiple languages and read
+                instantly.
+              </p>
             </div>
           </section>
-          <br />
-        </main>
-        {/* start */}
-        <div className="container-fluid">
-          <section className="pt-3">
-            <div className="row mx-0">
-              {/* Left Column */}
-              <div className="col-lg-12 col-md-12 px-0 px-lg-3">
-                <aside className="sidebar">
-                  {loading ? (
-                    <center>
-                      <Loader />
-                    </center>
-                  ) : (
-                    <div className="widget mt-3">
-                      <div className="row mx-0">
-                        {categorys.map((category) => (
-                          <div
-                            className="col-12 col-sm-6 col-md-3 col-lg-3 px-2"
-                            key={category.id}
-                          >
-                            <ul className="unordered_list_block m-0 p-0">
-                              <li>
-                                <Link to={`/pdf-zone/${category.slug}`}>
-                                  <i
-                                    className="fas fa-folder"
-                                    style={{ marginRight: "8px" }}
-                                  ></i>{" "}
-                                  <span>{category.name}</span>
-                                  <span>
-                                    <strong>
-                                      &nbsp;({category.count || 0})
-                                    </strong>
-                                  </span>
-                                </Link>
-                              </li>
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </aside>
 
-                {/* Popular Tags */}
-                <div className="mt-4">
-                  <h3 className="widget_title">Popular Tags</h3>
-                  <ul className="tag-list list-unstyled">
-                    {tags.map((category) => (
-                      <li key={category.slug} className="tag-item mb-2">
-                        <Link
-                          to={`/question-answer/${category.slug}`}
-                          className="tag-link"
-                        >
-                          {category.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
-              {/* Right Column */}
-              <div className="col-lg-2 col-md-12 px-0 px-lg-3 d-none">
-                <aside className="sidebar">
-                  <div className="row mx-0">
-                    {serviceData.slice(0, 3).map((service) => (
-                      <div className="col-12 mb-3 px-2" key={service.id}>
+          {/* Categories */}
+          <section className="container">
+            <div className="pdf-row bordered-row mb-2">
+              <h5 className="row-title">Categories</h5>
+              <div className="row g-2">
+                {loadingCategories ? (
+                  <div className="text-center py-4">Loading...</div>
+                ) : (
+                  categories.map(
+                    (cat) =>
+                      cat.source_id &&
+                      cat.title && (
                         <div
-                          className="course_item"
-                          style={{
-                            borderRadius: "15px",
-                            overflow: "hidden",
-                            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-                            backgroundColor: "#fff",
-                            transition: "transform 0.3s ease",
-                            padding: "10px",
-                          }}
+                          key={cat.source_id}
+                          className="col-lg-3 col-md-4 col-6"
                         >
-                          <div
-                            className="item_image"
-                            style={{ position: "relative" }}
+                          <button
+                            className="modern-grid-btn"
+                            onClick={() => openListModal(cat)}
                           >
-                            <Link
-                              className="image_wrap"
-                              to={`/guide-details/${service.slug}`}
-                            >
-                              <img
-                                src={service.image}
-                                alt={service.title}
-                                className="img-fluid"
-                                style={{
-                                  height: "200px",
-                                  width: "100%",
-                                  objectFit: "cover",
-                                  borderRadius: "10px",
-                                }}
-                              />
-                            </Link>
-                          </div>
-                          <div
-                            className="item_content"
-                            style={{ padding: "15px" }}
-                          >
-                            <Link
-                              className="course_instructor btn_unfill"
-                              to={`/guide-details/${service.slug}`}
-                              style={{
-                                fontSize: "14px",
-                                color: "#555",
-                                textDecoration: "none",
-                              }}
-                            >
-                              <span
-                                className="badge_premium"
-                                style={{
-                                  color: "#f39c12",
-                                  fontSize: "20px",
-                                  padding: "8px",
-                                  marginRight: "10px",
-                                }}
-                              >
-                                <i className="fas fa-crown"></i>
-                              </span>
-                              {service.instructor}
-                            </Link>
-
-                            <div style={buttonGroupStyle}>
-                              <button
-                                style={cartButtonStyle}
-                                onClick={() => addToCart(service)}
-                              >
-                                <i className="fas fa-shopping-cart"></i> Add to
-                                Cart
-                              </button>
-                              <button
-                                style={detailsButtonStyle}
-                                onClick={() => handleOpenModal(service)}
-                              >
-                                Details
-                              </button>
-                            </div>
-                          </div>
+                            {cat.title}
+                          </button>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </aside>
+                      ),
+                  )
+                )}
               </div>
             </div>
-            <br />
           </section>
-        </div>
-        {/* END */}
+        </main>
 
         <Footer />
       </div>
-    </>
+
+      {/* ====================== */}
+      {/* eBook List Modal */}
+      {/* ====================== */}
+      <div
+        className="modal fade"
+        id="ebookListModal"
+        tabIndex="-1"
+        aria-labelledby="ebookListModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-fullscreen-lg-down modal-xl modal-dialog-centered modal-dialog-scrollable">
+          <div className="modal-content pdf-wrapper-modern">
+            <div className="modal-header d-flex justify-content-between align-items-center">
+              <h5 className="modal-title" id="ebookListModalLabel">
+                {selectedCategory ? selectedCategory.title : "eBooks"}
+              </h5>
+              <button
+                type="button"
+                onClick={closeModal}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                  width: "30px",
+                  height: "30px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                aria-label="Close"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="black"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="modal-body">
+              <div className="row g-3">
+                {loadingBooks ? (
+                  <div className="text-center py-4">Loading...</div>
+                ) : books.length > 0 ? (
+                  books.map((book, index) => (
+                    <div key={index} className="col-lg-3 col-md-4 col-6">
+                      <button
+                        className="modern-book-grid-btn"
+                        onClick={() => openPdf(book.url)}
+                      >
+                        {book.title}
+                      </button>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-center py-4">
+                    No books available for this category
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ====================== */}
+      {/* PDF Reader Modal */}
+      {/* ====================== */}
+      <div
+        className="modal fade"
+        id="ebookReaderModal"
+        tabIndex="-1"
+        aria-labelledby="ebookReaderModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-fullscreen modal-dialog-centered modal-dialog-scrollable">
+          <div className="modal-content pdf-wrapper-modern">
+            <div className="modal-header d-flex justify-content-between align-items-center">
+              <button
+                className="btn btn-outline-secondary"
+                onClick={() => {
+                  // hide reader modal
+                  const readerModalEl =
+                    document.getElementById("ebookReaderModal");
+                  const readerModal =
+                    window.bootstrap.Modal.getInstance(readerModalEl);
+                  readerModal.hide();
+
+                  // show list modal
+                  if (selectedCategory) {
+                    const listModalEl =
+                      document.getElementById("ebookListModal");
+                    const listModal = new window.bootstrap.Modal(listModalEl);
+                    listModal.show();
+                  }
+
+                  setSelectedPdf("");
+                }}
+              >
+                ← Back to eBooks
+              </button>
+
+              <button
+                type="button"
+                onClick={closeModal}
+                style={{
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                  width: "30px",
+                  height: "30px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                aria-label="Close"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="black"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+
+            <div className="modal-body">
+              {selectedPdf && (
+                <iframe
+                  src={selectedPdf}
+                  title="PDF Reader"
+                  className="modern-frame"
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Category;
+export default PdfBooks;
